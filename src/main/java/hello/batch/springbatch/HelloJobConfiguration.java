@@ -1,6 +1,9 @@
 package hello.batch.springbatch;
 
+import java.util.Map;
+
 import org.springframework.batch.core.Job;
+import org.springframework.batch.core.JobParameters;
 import org.springframework.batch.core.Step;
 import org.springframework.batch.core.configuration.annotation.JobBuilderFactory;
 import org.springframework.batch.core.configuration.annotation.StepBuilderFactory;
@@ -32,6 +35,13 @@ public class HelloJobConfiguration {
 				System.out.println(" ====================");
 				System.out.println("Hello Spring Batch!!");
 				System.out.println(" ====================");
+				JobParameters jobParameters = stepContribution.getStepExecution().getJobExecution().getJobParameters();
+				jobParameters.getString("name");
+				jobParameters.getLong("seq");
+				jobParameters.getDate("date");
+				jobParameters.getDouble("age");
+
+				Map<String, Object> jobParameters1 = chunkContext.getStepContext().getJobParameters();
 				return RepeatStatus.FINISHED;
 			})
 			.build();
