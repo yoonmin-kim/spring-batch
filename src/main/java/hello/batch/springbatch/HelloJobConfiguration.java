@@ -54,7 +54,8 @@ public class HelloJobConfiguration {
 				System.out.println(" ====================");
 				System.out.println("step2 was executed");
 				System.out.println(" ====================");
-				return RepeatStatus.FINISHED;
+				throw new RuntimeException("예외발생");
+				// return RepeatStatus.FINISHED;
 			})
 			.build();
 	}

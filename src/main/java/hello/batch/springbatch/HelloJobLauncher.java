@@ -11,7 +11,7 @@ import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
 
-// @Component
+@Component
 public class HelloJobLauncher implements ApplicationRunner {
 
 	@Autowired
@@ -24,7 +24,7 @@ public class HelloJobLauncher implements ApplicationRunner {
 		JobParameters jobParameters = new JobParametersBuilder()
 			.addString("name", "user1")
 			.addLong("seq", 2L)
-			.addDate("date", new Date())
+			.addDate("date", new Date(1641913200000L))
 			.addDouble("age", 16.5)
 			.toJobParameters();
 
