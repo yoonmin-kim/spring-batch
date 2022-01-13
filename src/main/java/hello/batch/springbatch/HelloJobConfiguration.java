@@ -50,13 +50,7 @@ public class HelloJobConfiguration {
 	@Bean
 	public Step helloStep2() {
 		return stepBuilderFactory.get("helloStep2")
-			.tasklet((stepContribution, chunkContext) -> {
-				System.out.println(" ====================");
-				System.out.println("step2 was executed");
-				System.out.println(" ====================");
-				throw new RuntimeException("예외발생");
-				// return RepeatStatus.FINISHED;
-			})
+			.tasklet(new CustomTasklet())
 			.build();
 	}
 }
