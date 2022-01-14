@@ -10,8 +10,8 @@ public class CustomTasklet implements Tasklet {
 	@Override
 	public RepeatStatus execute(StepContribution stepContribution, ChunkContext chunkContext) throws Exception {
 
-		System.out.println("step2 was executed");
-
-		return RepeatStatus.FINISHED;
+		System.out.println("customTasklet has executed");
+		throw new RuntimeException("customTasklet exception");
+		// return RepeatStatus.FINISHED;
 	}
 }
