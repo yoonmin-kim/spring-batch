@@ -11,7 +11,7 @@ public class CustomTasklet implements Tasklet {
 	public RepeatStatus execute(StepContribution stepContribution, ChunkContext chunkContext) throws Exception {
 
 		System.out.println("customTasklet has executed");
-		throw new RuntimeException("customTasklet exception");
-		// return RepeatStatus.FINISHED;
+		// throw new RuntimeException("customTasklet exception");
+		return RepeatStatus.FINISHED;
 	}
 }
