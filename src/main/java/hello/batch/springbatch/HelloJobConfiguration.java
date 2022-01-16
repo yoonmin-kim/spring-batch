@@ -1,16 +1,9 @@
 package hello.batch.springbatch;
 
-import java.util.Map;
-
 import org.springframework.batch.core.Job;
-import org.springframework.batch.core.JobParameters;
 import org.springframework.batch.core.Step;
-import org.springframework.batch.core.StepContribution;
 import org.springframework.batch.core.configuration.annotation.JobBuilderFactory;
 import org.springframework.batch.core.configuration.annotation.StepBuilderFactory;
-import org.springframework.batch.core.scope.context.ChunkContext;
-import org.springframework.batch.core.step.tasklet.Tasklet;
-import org.springframework.batch.repeat.RepeatStatus;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -29,41 +22,37 @@ public class HelloJobConfiguration {
 			.start(helloStep1())
 			.next(helloStep2())
 			.next(helloStep3())
+			.next(helloStep4())
 			.build();
 	}
 
 	@Bean
 	public Step helloStep1() {
 		return stepBuilderFactory.get("helloStep1")
-			.tasklet((stepContribution, chunkContext) -> {
-				System.out.println("helloStep1 has executed");
-				JobParameters jobParameters = stepContribution.getStepExecution().getJobExecution().getJobParameters();
-				jobParameters.getString("name");
-				jobParameters.getLong("seq");
-				jobParameters.getDate("date");
-				jobParameters.getDouble("age");
-
-				Map<String, Object> jobParameters1 = chunkContext.getStepContext().getJobParameters();
-				return RepeatStatus.FINISHED;
-			})
+			.tasklet(new CustomTasklet1())
 			.build();
 	}
 
 	@Bean
 	public Step helloStep2() {
 		return stepBuilderFactory.get("helloStep2")
-			.tasklet(new CustomTasklet())
+			.tasklet(new CustomTasklet2())
 			.build();
 	}
 
 	@Bean
 	public Step helloStep3() {
 		return stepBuilderFactory.get("helloStep3")
-			.tasklet((stepContribution, chunkContext) -> {
-				System.out.println("helloStep3 has executed");
-				return RepeatStatus.FINISHED;
-			})
+			.tasklet(new CustomTasklet3())
 			.build();
 
 	}
+
+	@Bean
+	public Step helloStep4() {
+		return stepBuilderFactory.get("helloStep4")
+			.tasklet(new CustomTasklet4())
+			.build();
+	}
+
 }
