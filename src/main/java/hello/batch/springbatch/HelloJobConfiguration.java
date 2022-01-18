@@ -20,14 +20,13 @@ public class HelloJobConfiguration {
 
 	private final JobBuilderFactory jobBuilderFactory;
 	private final StepBuilderFactory stepBuilderFactory;
-	private final JobExecutionListener jobRepositoryListener;
+	// private final JobExecutionListener jobRepositoryListener;
 
 	@Bean
 	public Job helloJob() {
 		return jobBuilderFactory.get("helloJob")
 			.start(helloStep1())
 			.next(helloStep2())
-			.listener(jobRepositoryListener)
 			.build();
 	}
 
@@ -39,6 +38,7 @@ public class HelloJobConfiguration {
 				public RepeatStatus execute(StepContribution stepContribution, ChunkContext chunkContext) throws
 					Exception {
 					// throw new RuntimeException("");
+					Thread.sleep(3000);
 					return RepeatStatus.FINISHED;
 				}
 			})

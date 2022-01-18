@@ -14,7 +14,7 @@ import org.springframework.stereotype.Component;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
-@Component
+// @Component
 public class JobRepositoryListener implements JobExecutionListener {
 
 	private final JobRepository jobRepository;

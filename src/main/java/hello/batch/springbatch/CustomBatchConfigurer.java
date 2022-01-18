@@ -9,7 +9,7 @@ import org.springframework.boot.autoconfigure.batch.BatchProperties;
 import org.springframework.boot.autoconfigure.transaction.TransactionManagerCustomizers;
 import org.springframework.context.annotation.Configuration;
 
-@Configuration
+// @Configuration
 public class CustomBatchConfigurer extends BasicBatchConfigurer {
 
 	private final DataSource dataSource;
