@@ -6,6 +6,8 @@ import org.springframework.batch.core.Step;
 import org.springframework.batch.core.StepContribution;
 import org.springframework.batch.core.configuration.annotation.JobBuilderFactory;
 import org.springframework.batch.core.configuration.annotation.StepBuilderFactory;
+import org.springframework.batch.core.job.builder.FlowBuilder;
+import org.springframework.batch.core.job.flow.Flow;
 import org.springframework.batch.core.scope.context.ChunkContext;
 import org.springframework.batch.core.step.tasklet.Tasklet;
 import org.springframework.batch.repeat.RepeatStatus;
@@ -25,8 +27,9 @@ public class HelloJobConfiguration {
 	@Bean
 	public Job helloJob() {
 		return jobBuilderFactory.get("helloJob")
-			.start(helloStep1())
+			.start(helloFlow1())
 			.next(helloStep2())
+			.end()
 			.build();
 	}
 
@@ -50,6 +53,20 @@ public class HelloJobConfiguration {
 		return stepBuilderFactory.get("helloStep2")
 			.tasklet((stepContribution, chunkContext) -> null)
 			.build();
+	}
+
+	@Bean
+	public Step helloStep3() {
+		return stepBuilderFactory.get("helloStep3")
+			.tasklet((stepContribution, chunkContext) -> null)
+			.build();
+	}
+
+	@Bean
+	public Flow helloFlow1() {
+		FlowBuilder<Flow> flowBuilder = new FlowBuilder<>("helloFlow1");
+		return flowBuilder.start(helloStep3())
+			.end();
 	}
 
 }
