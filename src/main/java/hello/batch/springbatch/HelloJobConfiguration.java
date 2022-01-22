@@ -11,6 +11,7 @@ import org.springframework.batch.core.Step;
 import org.springframework.batch.core.StepContribution;
 import org.springframework.batch.core.configuration.annotation.JobBuilderFactory;
 import org.springframework.batch.core.configuration.annotation.StepBuilderFactory;
+import org.springframework.batch.core.job.DefaultJobParametersValidator;
 import org.springframework.batch.core.job.builder.FlowBuilder;
 import org.springframework.batch.core.job.flow.Flow;
 import org.springframework.batch.core.scope.context.ChunkContext;
@@ -34,30 +35,8 @@ public class HelloJobConfiguration {
 		return jobBuilderFactory.get("helloJob")
 			.start(helloStep1())
 			.next(helloStep2())
-			.incrementer(new JobParametersIncrementer() {
-				@Override
-				public JobParameters getNext(JobParameters jobParameters) {
-					return null;
-				}
-			})
-			.validator(new JobParametersValidator() {
-				@Override
-				public void validate(JobParameters jobParameters) throws JobParametersInvalidException {
-
-				}
-			})
-			.preventRestart()
-			.listener(new JobExecutionListener() {
-				@Override
-				public void beforeJob(JobExecution jobExecution) {
-
-				}
-
-				@Override
-				public void afterJob(JobExecution jobExecution) {
-
-				}
-			})
+			// .validator(new MyJobValidator())
+			.validator(new DefaultJobParametersValidator(new String[]{"name"},new String[]{"count"}))
 			.build();
 	}
 
