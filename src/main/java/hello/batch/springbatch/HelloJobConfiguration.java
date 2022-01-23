@@ -36,7 +36,8 @@ public class HelloJobConfiguration {
 			.start(helloStep1())
 			.next(helloStep2())
 			// .validator(new MyJobValidator())
-			.validator(new DefaultJobParametersValidator(new String[]{"name"},new String[]{"count"}))
+			// .validator(new DefaultJobParametersValidator(new String[]{"name"},new String[]{"count"}))
+			.preventRestart()
 			.build();
 	}
 
