@@ -61,8 +61,8 @@ public class HelloJobConfiguration {
 				public RepeatStatus execute(StepContribution stepContribution, ChunkContext chunkContext) throws
 					Exception {
 					// throw new RuntimeException("");
-					Thread.sleep(3000);
-					return RepeatStatus.FINISHED;
+					// Thread.sleep(3000);
+					return RepeatStatus.CONTINUABLE;
 				}
 			})
 			.build();
