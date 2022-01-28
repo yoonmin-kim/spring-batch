@@ -62,38 +62,25 @@ public class HelloJobConfiguration {
 					Exception {
 					// throw new RuntimeException("");
 					// Thread.sleep(3000);
-					return RepeatStatus.CONTINUABLE;
+					return RepeatStatus.FINISHED;
 				}
 			})
+			.allowStartIfComplete(true)
 			.build();
 	}
 
 	@Bean
 	public Step helloStep2() {
 		return stepBuilderFactory.get("helloStep2")
-			.<String, String>chunk(3)
-			.reader(new ItemReader<String>() {
+			.tasklet(new Tasklet() {
 				@Override
-				public String read() throws
-					Exception,
-					UnexpectedInputException,
-					ParseException,
-					NonTransientResourceException {
-					return null;
+				public RepeatStatus execute(StepContribution stepContribution, ChunkContext chunkContext) throws
+					Exception {
+					throw new RuntimeException("");
+					// return RepeatStatus.FINISHED;
 				}
 			})
-			.processor(new ItemProcessor<String, String>() {
-				@Override
-				public String process(String s) throws Exception {
-					return null;
-				}
-			})
-			.writer(new ItemWriter<String>() {
-				@Override
-				public void write(List<? extends String> list) throws Exception {
-
-				}
-			})
+			.startLimit(3)
 			.build();
 	}
 
