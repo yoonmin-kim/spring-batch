@@ -20,7 +20,7 @@ import org.springframework.context.annotation.Configuration;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
-@Configuration
+// @Configuration
 public class JobStepConfiguration {
 
 	private final JobBuilderFactory jobBuilderFactory;
