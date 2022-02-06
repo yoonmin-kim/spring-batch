@@ -62,13 +62,7 @@ public class FlowJobConfiguration {
 	@Bean
 	public Step step3() {
 		return stepBuilderFactory.get("step3")
-			.tasklet(new Tasklet() {
-				@Override
-				public RepeatStatus execute(StepContribution stepContribution, ChunkContext chunkContext) throws
-					Exception {
-					return RepeatStatus.FINISHED;
-				}
-			})
+			.tasklet((stepContribution, chunkContext) -> RepeatStatus.FINISHED)
 			.build();
 	}
 }
