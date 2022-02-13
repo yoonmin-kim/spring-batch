@@ -1,5 +1,7 @@
 package hello.batch.springbatch.scope;
 
+import java.util.HashMap;
+
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.Step;
 import org.springframework.batch.core.configuration.annotation.JobBuilderFactory;
