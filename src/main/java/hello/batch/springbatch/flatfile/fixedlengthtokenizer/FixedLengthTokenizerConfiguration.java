@@ -48,7 +48,7 @@ public class FixedLengthTokenizerConfiguration {
 	}
 
 	@Bean
-				public ItemReader<?> itemReader() {
+	public ItemReader<?> itemReader() {
 		return new FlatFileItemReaderBuilder<Client>()
 			.name("flatfile")
 			.targetType(Client.class)
