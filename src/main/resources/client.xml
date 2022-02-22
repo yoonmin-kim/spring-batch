@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<clients>
+    <client>
+        <name>user1</name>
+        <age>29</age>
+        <year>1994</year>
+    </client>
+    <client>
+        <name>user2</name>
+        <age>28</age>
+        <year>1995</year>
+    </client>
+    <client>
+        <name>user3</name>
+        <age>27</age>
+        <year>1996</year>
+    </client>
+</clients>
