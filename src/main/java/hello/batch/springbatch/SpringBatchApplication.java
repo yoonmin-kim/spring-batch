@@ -7,7 +7,7 @@ import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
 @EnableBatchProcessing
-@ComponentScan(basePackages = {"hello.batch.springbatch.xml"})
+@ComponentScan(basePackages = {"hello.batch.springbatch.json"})
 public class SpringBatchApplication {
 
 	public static void main(String[] args) {
