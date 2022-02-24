@@ -51,7 +51,7 @@ public class JsonConfiguration {
 
 	@Bean
 	public ItemWriter<? super Client> itemWriter() {
-		return (ItemWriter<Client>)items -> {
+		return items -> {
 			for (Client item : items) {
 				System.out.println("item = " + item);
 			}
