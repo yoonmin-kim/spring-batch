@@ -1,5 +1,8 @@
 package hello.batch.springbatch.fault_tolerant.retry;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.Step;
 import org.springframework.batch.core.configuration.annotation.JobBuilderFactory;
@@ -8,6 +11,8 @@ import org.springframework.batch.item.ItemProcessor;
 import org.springframework.batch.item.ItemReader;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.retry.RetryPolicy;
+import org.springframework.retry.policy.SimpleRetryPolicy;
 
 import lombok.RequiredArgsConstructor;
 
@@ -49,8 +54,19 @@ public class RetryConfiguration {
 			})
 			.writer(items -> System.out.println("items = " + items))
 			.faultTolerant()
-			.retry(RetryAbleException.class)
-			.retryLimit(2)
+			.skip(RetryAbleException.class)
+			.skipLimit(2)
+			.retryPolicy(retryPolicy())
+			// .retry(RetryAbleException.class)
+			// .retryLimit(2)
 			.build();
+	}
+
+	@Bean
+	public RetryPolicy retryPolicy() {
+		Map<Class<? extends Throwable>, Boolean> retryAbleException = new HashMap<>();
+		retryAbleException.put(RetryAbleException.class, true);
+
+		return new SimpleRetryPolicy(2, retryAbleException);
 	}
 }
