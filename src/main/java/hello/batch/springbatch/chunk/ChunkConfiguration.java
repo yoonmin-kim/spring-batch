@@ -17,7 +17,7 @@ import org.springframework.context.annotation.Configuration;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
-@Configuration
+// @Configuration
 public class ChunkConfiguration {
 
 	private final JobBuilderFactory jobBuilderFactory;

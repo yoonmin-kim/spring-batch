@@ -22,7 +22,7 @@ import hello.batch.springbatch.flatfile.Client;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
-@Configuration
+// @Configuration
 public class FlatFileDelimetedWriterConfiguration {
 
 	private final JobBuilderFactory jobBuilderFactory;
