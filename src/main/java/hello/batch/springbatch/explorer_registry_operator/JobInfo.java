@@ -1,0 +1,1 @@
+package hello.batch.springbatch.explorer_registry_operator;import lombok.Data;@Datapublic class JobInfo {	private String id;}
